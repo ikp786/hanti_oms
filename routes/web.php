@@ -20,10 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::name('admin.')->group(function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [AuthController::class, 'loginView'])->name('admin.logins');
     Route::get('login', [AuthController::class, 'login'])->name('admin.login');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    
     Route::resource('customers', CustomerController::class);
 
+});
 });

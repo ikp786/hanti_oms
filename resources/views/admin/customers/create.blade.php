@@ -10,7 +10,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                   {!! Form::open(['route' => 'admin.login', 'method' => 'get']) !!}
+                   {!! Form::open(['route' => 'admin.customers.store', 'method' => 'post']) !!}
                             <div class="row">                               
                                 <div class="col-md-6">                      
                                     <div class="form-group">

@@ -16,7 +16,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $title = 'Customer list';
+        $title     = 'Customer list';
+        $customers = User::where('type',3);
         $data  = compact('title');
         return view('admin.customers.index',$data);
     }
@@ -42,6 +43,7 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         $input   = $request->validated();
+        
         $save    = User::create($input);
         return redirect()->route('admin.customers.index')->with('success','Customer create successully');
     }
