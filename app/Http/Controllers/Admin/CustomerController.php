@@ -17,8 +17,8 @@ class CustomerController extends Controller
     public function index()
     {
         $title     = 'Customer list';
-        $customers = User::where('type',3);
-        $data  = compact('title');
+        $customers = User::where('type',3)->get();
+        $data  = compact('title','customers');
         return view('admin.customers.index',$data);
     }
 
@@ -42,8 +42,8 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        $input   = $request->validated();
-        
+        $input          = $request->validated();
+        $input['type'] = 3;
         $save    = User::create($input);
         return redirect()->route('admin.customers.index')->with('success','Customer create successully');
     }
@@ -65,11 +65,11 @@ class CustomerController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $customer)
     {
         $title    = 'Edit Customer';
-        $data  = compact('title','user');
-        return view('admin.customers.create',$data);
+        $data  = compact('title','customer');
+        return view('admin.customers.edit',$data);
     }
 
     /**
@@ -79,11 +79,13 @@ class CustomerController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCustomerRequest $request, User $user)
+    public function update(UpdateCustomerRequest $request, User $user, $id)
     {
         $input   = $request->validated();
+        $user = User::find($id);
+        //dd($user);
         $user->update($request->validated());
-        return redirect()->route('admin.customer.index')->with('success','Customer create successully');
+        return redirect()->route('admin.customers.index')->with('success','Customer create successully');
     }
 
     /**

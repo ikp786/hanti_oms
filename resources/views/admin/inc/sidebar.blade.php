@@ -79,12 +79,12 @@
                     </a>
                     <ul id="category" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
-                            <a href="page-list-category.html">
+                            <a href="{{ route('admin.customers.index') }}">
                                 <i class="las la-minus"></i><span>Costomer List</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="page-add-category.html">
+                            <a href="{{ route('admin.customers.create') }}">
                                 <i class="las la-minus"></i><span>Add Costomer</span>
                             </a>
                         </li>

@@ -24,7 +24,10 @@ class StoreCustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'          => 'required|max:30',
+            'mobile'        => 'required|digits:10|numeric',
+            'lat'           => 'required|numeric',
+            'long'          => 'required|numeric'
         ];
     }
 }
